@@ -8,7 +8,6 @@ plugins {
 
 group = 'com.sportyshoes'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -55,4 +54,10 @@ dockerRun {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
 }
