@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap CSS-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/styles.css}">
+    <title>Sporty Shoes</title>
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}">Header</div>
+<div class="container">
+    <div class="fs-4">
+        Home
+    </div>
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Category</th>
+            <th scope="col">Add to Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="p : ${allProducts}">
+            <td th:text="${p.getName()}">Name</td>
+            <td th:text="${p.getPrice()}">Price</td>
+            <td th:text="${#dates.format(p.getDateAdded(), 'dd-MM-yyyy')}">Date</td>
+            <td th:text="${mapCategories.get(p.id)}">ID</td>
+            <td>
+                <a class="btn btn-sm btn-primary" th:href="@{/cartadditem(id=${p.id})}">Add To Cart</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <footer th:fragment="footer"></footer>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

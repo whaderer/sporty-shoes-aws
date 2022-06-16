@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap CSS-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/styles.css}">
+    <title>Sporty Shoes</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div class="container">
+    <div class="fs-4">
+        Your Purchases
+    </div>
+    <table class="table table-striped table-responsive">
+        <thead>
+        <tr>
+            <th scope="col">Order ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Total</th>
+            <th scope="col">Items (Name/Price/Rate/Quantity)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="purchase : ${purchaseList}">
+            <td th:text="${purchase.getId()}"></td>
+            <td th:text="${#dates.format(purchase.getDate(), 'dd-MM-yyyy')}"></td>
+            <td th:text="${purchase.getTotal()}"></td>
+            <td>
+                <p th:each="purchaseitem : ${purchaseItemList}">
+                    <!--                    <span th:if="${purchase.getId} == ${purchaseitem.getPurchaseId()}"-->
+                    <!--                          th:text="${purchaseitem.getId()}">ID</span>-->
+                    <span th:if="${purchase.getId} == ${purchaseitem.getPurchaseId()}"
+                          th:text="${purchaseitem.getProduct().getName()+ ' / '}">Product Name</span>
+                    <span th:if="${purchase.getId} == ${purchaseitem.getPurchaseId()}"
+                          th:text="${purchaseitem.getPrice() + ' / '}">Price</span>
+                    <span th:if="${purchase.getId} == ${purchaseitem.getPurchaseId()}"
+                          th:text="${purchaseitem.getRate()+ ' / '}">Rate</span>
+                    <span th:if="${purchase.getId} == ${purchaseitem.getPurchaseId()}"
+                          th:text="${purchaseitem.getQuantity()}">Quantity</span>
+                </p>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <span class="fw-bold">Total:</span>
+    <span th:text="${totalAmount}"></span>
+    <span class="fw-bold">Orders:</span>
+    <span th:text="${purchaseList.size()}"></span>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

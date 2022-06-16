@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap CSS-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/styles.css}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sporty Shoes</title>
+</head>
+<body>
+<div class="container">
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+
+        <a th:href="@{/home/allProducts}"
+           class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img class="bi me-2" id="image" width="40" height="40" role="img" src="/sneaker-svgrepo-com.svg"
+                 alt="Sportyshoes">
+            <span class="fs-4">Sporty Shoes</span>
+
+        </a>
+        <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a th:href="@{/home/allProducts}" class="nav-link px-2 link-secondary">Home</a></li>
+            <li><a th:href="@{/user_dashboard}" class="nav-link px-2 link-dark">Dashboard</a></li>
+            <li><a th:href="@{/cart}" class="nav-link px-2 link-dark">Cart</a></li>
+            <li><a th:href="@{/user_edit_profile}" class="nav-link px-2 link-dark">Edit Profile</a></li>
+            <li><a th:href="@{/memberpurchases}" class="nav-link px-2 link-dark">Your Orders</a></li>
+            <li><a th:href="@{/logout}" class="nav-link px-2 link-dark">Logout</a></li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    Admin Area
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li><a class="dropdown-item" th:href="@{/admin_dashboard}">Admin Dashboard</a></li>
+                    <li><a class="dropdown-item" th:href="@{/registeradmin}">Admin Signup</a></li>
+                </ul>
+            </li>
+        </ul>
+        <!--        <div th:if="${!#authorization.expression('isAuthenticated()')}" class="col-md-3 text-end px-3" id="login-btn">-->
+        <div class="col-md-3 text-end px-3" id="login-btn">
+            <a th:href="@{/login_user}" class="btn btn-outline-primary me-2" role="button">Login</a>
+            <a th:href="@{/registeruser}" class="btn btn-primary" role="button">Signup</a>
+        </div>
+    </header>
+</div>
+<!--<nav th:fragment="header">-->
+<!--    <div>-->
+<!--        <div>-->
+<!--            <a id="home" th:href="@{/home/allProducts}">Home</a>-->
+<!--            <div th:if="${!#authorization.expression('isAuthenticated()')}">-->
+<!--                <a th:href="@{/login_user}">Login</a>-->
+<!--                <a th:href="@{/registeruser}">Signup</a>-->
+<!--            </div>-->
+<!--            <a th:href="@{/admin_dashboard}">Admin Dashboard</a>-->
+<!--            <a th:href="@{/registeradmin}">Register Admin</a>-->
+<!--            <a th:href="@{/user_dashboard}">User Dashboard</a>-->
+<!--            <a th:href="@{/cart}">Cart</a>-->
+<!--            <form method="POST" th:action="@{/logout}">-->
+<!--                <input type="submit" value="Logout"/>-->
+<!--            </form>-->
+<!--            <a th:href="@{/user_edit_profile}">Edit Profile</a>-->
+<!--            <a th:href="@{/memberpurchases}">Your Orders</a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</nav>-->
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
+
+

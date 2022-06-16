@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap CSS-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/styles.css}">
+    <title>Sporty Shoes</title>
+</head>
+<body>
+<div th:replace="fragments/admin-header :: header">&nbsp;</div>
+<div class="container">
+    <form method="POST" th:action="@{/admin_process_product_update}" id="editProductForm">
+        <div class="fs-4">
+            Edit Product
+        </div>
+        <br>
+        <div class="row mb-1">
+            <label for="name" class="col-sm-1 col-form-label">Name</label>
+            <div class="col-sm-6">
+                <input id="name" type="text" name="name" class="form-control"
+                       th:value="${productToUpdate.getName()}"/><br/>
+                <!--    <label for="date_added">Date Added</label>-->
+                <!--    <input type="date" name="date_added"-->
+                <!--           th:value="${#dates.format(productToUpdate.getDateAdded(), 'dd-MM-yyyy')}"/><br/>-->
+            </div>
+        </div>
+        <div class="row mb-1">
+            <label for="price" class="col-sm-1 col-form-label">Price</label>
+            <div class="col-sm-6">
+                <input id="price" type="number" name="price" class="form-control"
+                       th:value="${productToUpdate.getPrice()}"/><br/>
+            </div>
+        </div>
+        <div class="row mb-1">
+            <label for="categoryId" class="col-sm-1 col-form-label">Category</label>
+            <!--    <input type="hidden" name="categoryId" th:value="${productToUpdate.getCategoryId()}"/><br/>-->
+            <div class="col-sm-6">
+                <select class="form-control" id="categoryId" name="categoryId">
+                    <option th:value="${productToUpdate.getCategoryId()}"
+                            th:text="${mapCategories.get(productToUpdate.getId())}">Select Category
+                    </option>
+                    <option th:each="option : ${categoryList}"
+                            th:value="${option.getId()}"
+                            th:text="${option.getName()}"
+                            th:data="${option.getId()}">
+                    </option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <input type="submit" class="btn btn-primary" value="Save"/>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

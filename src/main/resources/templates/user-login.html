@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--Bootstrap CSS-->
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}"/>
+    <link th:rel="stylesheet" th:href="@{/styles.css}">
+    <title>Sporty Shoes</title>
+</head>
+<body>
+<div th:replace="fragments/header :: header">&nbsp;</div>
+<div class="container">
+    <form method="POST" th:action="@{/user_login}" id="loginForm">
+             <span class="fs-4">
+                    Login
+                </span>
+        <div class="mb-3">
+            <label for="username" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="username"
+                       name="username"
+                       title="john.doe@gmail.com"
+                       placeholder="Enter your e-mail address"
+                       pattern=".{4,40}"
+                       required="required">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" class="form-control" id="password" name="password"
+                       size="40"
+                       maxlength="10"
+                       title="4-10 characters"
+                       placeholder="Enter your password"
+                       pattern=".{1,10}"
+                       required="required">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-primary">Login</button>
+    </form>
+    <div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+</div>
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>
+<!-- end::all[] -->
