@@ -37,7 +37,7 @@ dependencies {
 }
 
 String dockerHubUsernameProperty = findProperty('dockerHubUsername') ?: 'vilifried'
-String imageName = "${dockerHubUsernameProperty}/sporty-shoes-aws$version"
+String imageName = "${dockerHubUsernameProperty}/sporty-shoes-aws:$version"
 
 docker {
     name imageName
