@@ -4,6 +4,7 @@ plugins {
     id 'java'
     id 'com.palantir.docker' version '0.33.0'
     id 'com.palantir.docker-run' version '0.33.0'
+    id 'jp.classmethod.aws.reboot.cloudformation' version '0.45'
 }
 
 group = 'com.sportyshoes'
@@ -50,6 +51,17 @@ dockerRun {
     image imageName
     ports '8080:8080'
     clean true
+}
+
+cloudFormation {
+    stackName "$project.name-stack"
+    stackParams([
+            SubnetID: findProperty('subnetId') ?: '',
+            ServiceName: project.name,
+            ServiceVersion: project.version,
+            DockerHubUsername: dockerHubUsernameProperty
+    ])
+    templateFile project.file("ecs.yml")
 }
 
 tasks.named('test') {
