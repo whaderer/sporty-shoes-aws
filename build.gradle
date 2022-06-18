@@ -64,6 +64,10 @@ cloudFormation {
     templateFile project.file("ecs.yml")
 }
 
+aws {
+    region = findProperty('region') ?: 'us-east-1'
+}
+
 tasks.named('test') {
     useJUnitPlatform()
 }
